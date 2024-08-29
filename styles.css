@@ -1,3 +1,4 @@
+/* general styling */
 *, *::after, *::before {
   box-sizing: border-box;
 }
@@ -11,7 +12,17 @@ body {
   margin: 0;
 }
 
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .board {
+    margin-top: -80px;
+  }
+
 .board {
+  border-width: 10px;
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -33,85 +44,67 @@ body {
   cursor: pointer;
 }
 
-.cell:first-child,
-.cell:nth-child(2),
-.cell:nth-child(3) {
-  border-top: none;
-}
-
-.cell:nth-child(3n + 1) {
-  border-left: none;
-}
-
-.cell:nth-child(3n + 3) {
-  border-right: none;
-}
-
-.cell:last-child,
-.cell:nth-child(8),
-.cell:nth-child(7) {
-  border-bottom: none;
-}
-
-.cell.x,
+/* cross and circle icons */
+.cell.cross,
 .cell.circle {
   cursor: not-allowed;
 }
 
-.cell.x::before,
-.cell.x::after,
+.cell.cross::before,
+.cell.cross::after,
 .cell.circle::before {
   background-color: black;
 }
 
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after,
-.board.circle .cell:not(.x):not(.circle):hover::before {
+.board.cross .cell:not(.cross):not(.circle):hover::before,
+.board.cross .cell:not(.cross):not(.circle):hover::after,
+.board.circle .cell:not(.cross):not(.circle):hover::before {
   background-color: lightgrey;
 }
 
-.cell.x::before,
-.cell.x::after,
-.board.x .cell:not(.x):not(.circle):hover::before,
-.board.x .cell:not(.x):not(.circle):hover::after {
+.cell.cross::before,
+.cell.cross::after,
+.board.cross .cell:not(.cross):not(.circle):hover::before,
+.board.cross .cell:not(.cross):not(.circle):hover::after {
   content: '';
   position: absolute;
   width: calc(var(--mark-size) * .15);
   height: var(--mark-size);
 }
 
-.cell.x::before,
-.board.x .cell:not(.x):not(.circle):hover::before {
+.cell.cross::before,
+.board.cross .cell:not(.cross):not(.circle):hover::before {
   transform: rotate(45deg);
 }
 
-.cell.x::after,
-.board.x .cell:not(.x):not(.circle):hover::after {
+.cell.cross::after,
+.board.cross .cell:not(.cross):not(.circle):hover::after {
   transform: rotate(-45deg);
 }
 
 .cell.circle::before,
 .cell.circle::after,
-.board.circle .cell:not(.x):not(.circle):hover::before,
-.board.circle .cell:not(.x):not(.circle):hover::after {
+.board.circle .cell:not(.cross):not(.circle):hover::before,
+.board.circle .cell:not(.cross):not(.circle):hover::after {
   content: '';
   position: absolute;
   border-radius: 50%;
 }
 
 .cell.circle::before,
-.board.circle .cell:not(.x):not(.circle):hover::before {
+.board.circle .cell:not(.cross):not(.circle):hover::before {
   width: var(--mark-size);
   height: var(--mark-size);
 }
 
 .cell.circle::after,
-.board.circle .cell:not(.x):not(.circle):hover::after {
+.board.circle .cell:not(.cross):not(.circle):hover::after {
   width: calc(var(--mark-size) * .7);
   height: calc(var(--mark-size) * .7);
   background-color: white;
 }
 
+/* win message styling */
 .winning-message {
   display: none;
   position: fixed;
@@ -144,3 +137,95 @@ body {
 .winning-message.show {
   display: flex;
 }
+
+/* player display and icon styling */
+
+#player-display-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  #player-display {
+    display: flex;
+    justify-content: space-around;
+    border: solid 1px steelblue;
+    margin: 0;
+    padding: 10px; 
+    background-color: white;
+    color: #0b375e;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  #player-display div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .p1-turn, .p2-turn {
+    margin: 0 10px;
+  }
+  
+  .p1-turn .icon, .p2-turn .icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+  
+  #p1-turn-cross, #p2-turn-dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  #p1-turn-cross {
+    width: 20px;
+    height: 20px;
+  }
+  
+  #p1-turn-cross::before, #p1-turn-cross::after {
+    content: '';
+    position: absolute;
+    background-color: black;
+    width: 3px;
+    height: 20px;
+  }
+  
+  #p1-turn-cross::before {
+    transform: rotate(45deg);
+  }
+  
+  #p1-turn-cross::after {
+    transform: rotate(-45deg);
+  }
+  
+  #p2-turn-dot {
+    width: 20px;
+    height: 20px;
+  }
+  
+  #p2-turn-dot::before {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background-color: black;
+  }
+  
+  #p2-turn-dot::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    top: 3px;
+    left: 3px;
+  }

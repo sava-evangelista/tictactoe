@@ -6,9 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="styles.css">
   <script src="main.js" defer></script>
-  <title>Document</title>
+  <title>Tic-Tac-Toe</title>
 </head>
 <body>
+    <h1>Play Tic-Tac-Toe!</h1>
+    <div id="player-display-container">
+    <div id="player-display" class="hidden">
+        <div>
+            <div id="p1-turn-cross" class="p1-turn"></div>
+            <div class="p1-turn">Player 1</div>
+        </div>
+        <div>
+            <div id="p2-turn-dot" class="p2-turn"></div>
+            <div class="p2-turn">Player 2</div>
+        </div>
+    </div>
+    </div>
   <div class="board" id="board">
     <div class="cell" data-cell></div>
     <div class="cell" data-cell></div>
